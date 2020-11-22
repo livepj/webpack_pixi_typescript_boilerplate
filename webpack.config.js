@@ -14,7 +14,7 @@ module.exports = {
     },
     devtool: "source-map",
     resolve: {
-        extensions: ['.js']
+        extensions: ['.js', '.ts']
     },
     optimization: {
         splitChunks: {
@@ -50,7 +50,8 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-typescript', '@babel/preset-env']
+                        presets: ['@babel/preset-typescript', '@babel/preset-env'],
+                        plugins: ['@babel/plugin-proposal-class-properties']
                     }
                 }
             },
