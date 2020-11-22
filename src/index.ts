@@ -1,7 +1,6 @@
-import * as PIXI from "pixi.js";
-const app = new PIXI.Application();
+const app = new PIXI.Application({ sharedTicker: true, sharedLoader: true });
 document.body.appendChild(app.view);
-app.stage.addChild(
-    new PIXI.Graphics().beginFill(0x00ffff).drawCircle(400, 300, 200)
-);
-console.log('pizda1');
+PIXI.Loader.shared.add("hui", "assets/hui.png");
+PIXI.Loader.shared.load(() => {
+    app.stage.addChild(PIXI.Sprite.from("hui"));
+});
