@@ -1,6 +1,6 @@
-const app = new PIXI.Application({ sharedTicker: true, sharedLoader: true });
-document.body.appendChild(app.view);
-PIXI.Loader.shared.add("hui", "assets/hui.png");
-PIXI.Loader.shared.load(() => {
-    app.stage.addChild(PIXI.Sprite.from("hui"));
-});
+import * as PIXI from 'pixi.js'
+const app = new PIXI.Application()
+await app.init()
+document.body.appendChild(app.canvas)
+await PIXI.Assets.load('assets/hugh.png')
+app.stage.addChild(PIXI.Sprite.from('assets/hugh.png'))
