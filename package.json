@@ -3,6 +3,7 @@
     "version": "1.0.0",
     "description": "",
     "private": true,
+    "type": "module",
     "scripts": {
         "dev": "cross-env NODE_ENV=development webpack",
         "prod": "cross-env NODE_ENV=production webpack",
@@ -21,7 +22,7 @@
         "copy-webpack-plugin": "^11.0.0",
         "core-js": "^3.32.0",
         "cross-env": "^7.0.3",
-        "eslint": "^9.18.0",
+        "eslint": "^9.19.0",
         "eslint-config-prettier": "^10.0.1",
         "eslint-plugin-prettier": "^5.2.3",
         "html-webpack-plugin": "^5.5.0",
