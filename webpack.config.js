@@ -1,11 +1,11 @@
-const path = require('path')
-const HTMLWebpackPlugin = require('html-webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+import path from 'path';
+import HTMLWebpackPlugin from 'html-webpack-plugin';
+import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 
-const isDev = process.env.NODE_ENV === 'development'
+const isDev = process.env.NODE_ENV === 'development';
 
-module.exports = {
+export default {
     context: path.resolve(__dirname, 'src'),
     entry: {
         main: ['core-js/stable', 'regenerator-runtime/runtime', './index.ts']
@@ -78,4 +78,4 @@ module.exports = {
             }
         ]
     }
-}
+};

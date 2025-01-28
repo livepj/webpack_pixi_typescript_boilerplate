@@ -1,4 +1,4 @@
-import eslintPlugin from '@typescript-eslint/eslint-plugin'
+import stylisticPlugin from '@stylistic/eslint-plugin';
 import tsParser from '@typescript-eslint/parser'
 
 export default [
@@ -13,7 +13,7 @@ export default [
             }
         },
         plugins: {
-            '@typescript-eslint': eslintPlugin
+            '@stylistic': stylisticPlugin
         },
         rules: {
             indent: ['error', 4],
@@ -29,38 +29,28 @@ export default [
             'no-var': ['error'],
             'prefer-const': ['error'],
             'arrow-parens': ['error', 'as-needed'],
-            'arrow-spacing': [
-                'error', {
-                    before: true, after: true
-                }
-            ],
+            'arrow-spacing': ['error', { before: true, after: true }],
             'spaced-comment': ['error', 'never'],
             eqeqeq: ['error', 'always'],
             'no-console': ['warn'],
             curly: ['error', 'all'],
             'space-infix-ops': ['error'],
             'array-bracket-newline': ['error', { multiline: true }],
-            'comma-spacing': [
-                'error', {
-                    before: false, after: true
-                }
-            ],
+            'comma-spacing': ['error', { before: false, after: true }],
             'max-len': ['error', { code: 120 }],
             'func-call-spacing': ['error', 'never'],
             'space-in-parens': ['error', 'never'],
             'no-whitespace-before-property': ['error'],
             'brace-style': ['error', '1tbs'],
-            'object-curly-newline': [
-                'error', {
-                    multiline: true, consistent: true, minProperties: 2
-                }
-            ],
+            'object-curly-newline': ['error', { multiline: false, consistent: true, minProperties: 2 }],
             'newline-before-return': ['error'],
             'no-multiple-empty-lines': ['error', { max: 1 }],
             'padded-blocks': ['error', 'never'],
             'space-before-blocks': ['error', 'always'],
             'function-paren-newline': ['error', 'never'],
-            'dot-location': ['error', 'property']
+            'dot-location': ['error', 'property'],
+            'key-spacing': ['error', { beforeColon: false, afterColon: true }],
+            '@stylistic/type-annotation-spacing': ['error', { before: false, after: true }]
         }
     }
 ]
