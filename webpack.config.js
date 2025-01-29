@@ -1,26 +1,28 @@
-import path from 'path';
-import HTMLWebpackPlugin from 'html-webpack-plugin';
-import { CleanWebpackPlugin } from 'clean-webpack-plugin';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
+import path from 'path'
+import HTMLWebpackPlugin from 'html-webpack-plugin'
+import { CleanWebpackPlugin } from 'clean-webpack-plugin'
+import CopyWebpackPlugin from 'copy-webpack-plugin'
 
-const isDev = process.env.NODE_ENV === 'development';
+const isDev = process.env.NODE_ENV === 'development'
+
+const resolvePath = (...segments) => path.resolve(process.cwd(), ...segments)
 
 export default {
-    context: path.resolve(__dirname, 'src'),
+    context: resolvePath('src'),
     entry: {
         main: ['core-js/stable', 'regenerator-runtime/runtime', './index.ts']
     },
     mode: isDev ? 'development' : 'production',
     output: {
-        filename: `[name]${!isDev ? '.[contenthash]' : ''}.js`,
-        path: path.resolve(__dirname, 'dist'),
+        filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
+        path: resolvePath('dist'),
         clean: true
     },
     devtool: isDev ? 'source-map' : false,
     resolve: {
         extensions: ['.js', '.ts'],
         alias: {
-            '@': path.resolve(__dirname, 'src')
+            '@': resolvePath('src')
         }
     },
     optimization: {
@@ -38,9 +40,7 @@ export default {
     devServer: {
         port: 3000,
         hot: true,
-        static: {
-            directory: path.resolve(__dirname, 'public')
-        }
+        static: resolvePath('public')
     },
     plugins: [
         new HTMLWebpackPlugin({ template: './index.html' }),
@@ -48,8 +48,8 @@ export default {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, 'src/assets'),
-                    to: path.resolve(__dirname, 'dist/assets')
+                    from: resolvePath('src/assets'),
+                    to: resolvePath('dist/assets')
                 }
             ]
         })
@@ -78,4 +78,4 @@ export default {
             }
         ]
     }
-};
+}
