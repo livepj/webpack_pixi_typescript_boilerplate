@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js'
+
 const app = new PIXI.Application()
 await app.init()
 document.body.appendChild(app.canvas)

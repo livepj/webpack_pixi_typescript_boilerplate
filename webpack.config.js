@@ -1,28 +1,30 @@
 import path from 'path'
+import { fileURLToPath } from 'url'
 import HTMLWebpackPlugin from 'html-webpack-plugin'
 import { CleanWebpackPlugin } from 'clean-webpack-plugin'
 import CopyWebpackPlugin from 'copy-webpack-plugin'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
 const isDev = process.env.NODE_ENV === 'development'
 
-const resolvePath = (...segments) => path.resolve(process.cwd(), ...segments)
-
 export default {
-    context: resolvePath('src'),
+    context: path.resolve(__dirname, 'src'),
     entry: {
         main: ['core-js/stable', 'regenerator-runtime/runtime', './index.ts']
     },
     mode: isDev ? 'development' : 'production',
     output: {
         filename: `[name]${isDev ? '' : '.[contenthash]'}.js`,
-        path: resolvePath('dist'),
+        path: path.resolve(__dirname, 'dist'),
         clean: true
     },
     devtool: isDev ? 'source-map' : false,
     resolve: {
-        extensions: ['.js', '.ts'],
+        extensions: ['.js', '.ts', '.tsx'],
         alias: {
-            '@': resolvePath('src')
+            '@': path.resolve(__dirname, 'src')
         }
     },
     optimization: {
@@ -40,7 +42,8 @@ export default {
     devServer: {
         port: 3000,
         hot: true,
-        static: resolvePath('public')
+        static: path.resolve(__dirname, 'src/assets'), //Указал ассеты, если нужно
+        watchFiles: ['src/**/*'] //Следит за всеми файлами в `src`
     },
     plugins: [
         new HTMLWebpackPlugin({ template: './index.html' }),
@@ -48,8 +51,8 @@ export default {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: resolvePath('src/assets'),
-                    to: resolvePath('dist/assets')
+                    from: path.resolve(__dirname, 'src/assets'),
+                    to: path.resolve(__dirname, 'dist/assets')
                 }
             ]
         })
@@ -57,7 +60,7 @@ export default {
     module: {
         rules: [
             {
-                test: /\.ts$/,
+                test: /\.tsx?$/,
                 exclude: /node_modules/,
                 use: {
                     loader: 'babel-loader',

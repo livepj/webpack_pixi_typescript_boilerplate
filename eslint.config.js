@@ -1,4 +1,5 @@
 import stylisticPlugin from '@stylistic/eslint-plugin'
+import importPlugin from 'eslint-plugin-import'
 import tsParser from '@typescript-eslint/parser'
 
 export default [
@@ -13,7 +14,14 @@ export default [
             }
         },
         plugins: {
-            '@stylistic': stylisticPlugin
+            '@stylistic': stylisticPlugin,
+            import: importPlugin
+        },
+        settings: {
+            'import/resolver': {
+                typescript: true,
+                node: true
+            }
         },
         rules: {
             //🔹 Основные правила стиля
@@ -89,6 +97,17 @@ export default [
                 beforeBlockComment: true,
                 beforeLineComment: false
             }],
+            'no-restricted-syntax': [
+                'error',
+                {
+                    selector: 'MethodDefinition[accessibility="public"]',
+                    message: 'Avoid using "public" in class properties. It is redundant and should be omitted.'
+                },
+                {
+                    selector: 'PropertyDefinition[accessibility="public"]',
+                    message: 'Avoid using "public" in class properties. It is redundant and should be omitted.'
+                }
+            ],
 
             //🔹 Кодстайл правил между блоками
             '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }],
@@ -98,7 +117,13 @@ export default [
             'prefer-const': ['error'],
             eqeqeq: ['error', 'always'],
             'no-console': ['warn'],
-            curly: ['error', 'all']
+            curly: ['error', 'all'],
+
+            //🔹 Правила импортов
+            'import/no-unresolved': 'error',
+            'import/no-named-as-default': 'error',
+            'import/first': 'error',
+            'import/newline-after-import': 'error'
         }
     }
 ]
