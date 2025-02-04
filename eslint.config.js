@@ -79,7 +79,7 @@ export default [
                         requireLast: false
                     },
                     singleline: {
-                        delimiter: 'semi',
+                        delimiter: 'comma',
                         requireLast: false
                     }
                 }
@@ -97,6 +97,12 @@ export default [
                 beforeBlockComment: true,
                 beforeLineComment: false
             }],
+            '@stylistic/no-multi-spaces': [
+                'error',
+                {
+                    ignoreEOLComments: false
+                }
+            ],
             'no-restricted-syntax': [
                 'error',
                 {
@@ -107,6 +113,7 @@ export default [
                     selector: 'PropertyDefinition[accessibility="public"]',
                     message: 'Avoid using "public" in class properties. It is redundant and should be omitted.'
                 }
+
             ],
 
             //🔹 Кодстайл правил между блоками
