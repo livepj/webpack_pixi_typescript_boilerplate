@@ -33,7 +33,7 @@
         "webpack-dev-server": "^4.15.0"
     },
     "dependencies": {
-        "@pixi-spine/runtime-4.1": "^4.0.3",
+        "@esotericsoftware/spine-pixi-v8": "^4.2.73",
         "gsap": "^3.12.7",
         "howler": "^2.2.4",
         "pixi.js": "8.6.6"
